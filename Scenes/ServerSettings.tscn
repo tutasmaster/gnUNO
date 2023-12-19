@@ -1,0 +1,143 @@
+[gd_scene load_steps=3 format=3 uid="uid://lod0su8f0wfl"]
+
+[ext_resource type="Script" path="res://Scripts/Client/ServerSettings.gd" id="1_8s08c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pe1l7"]
+font_size = 25
+
+[node name="Control" type="Control" node_paths=PackedStringArray("playerCount", "hiddenCards", "multiStacking", "dividedStacking", "drawOutOfTurn", "playOtherCards", "canTouchOtherCards", "cardZeroEnabled")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8s08c")
+playerCount = NodePath("VBoxContainer/PLAYER_COUNT")
+hiddenCards = NodePath("VBoxContainer/CheckBox")
+multiStacking = NodePath("VBoxContainer/CheckBox2")
+dividedStacking = NodePath("VBoxContainer/CheckBox3")
+drawOutOfTurn = NodePath("VBoxContainer/CheckBox4")
+playOtherCards = NodePath("VBoxContainer/CheckBox5")
+canTouchOtherCards = NodePath("VBoxContainer/CheckBox6")
+cardZeroEnabled = NodePath("VBoxContainer/CheckBox7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.0
+offset_top = -281.5
+offset_right = 153.0
+offset_bottom = 281.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "START GAME"
+
+[node name="PLAYER_COUNT" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "0 Players"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Options"
+label_settings = SubResource("LabelSettings_pe1l7")
+horizontal_alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Hide cards"
+alignment = 1
+
+[node name="CheckBox2" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Can stack with different types"
+alignment = 1
+
+[node name="CheckBox3" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Can play during stacking"
+alignment = 1
+
+[node name="CheckBox4" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Players can draw out of turn"
+alignment = 1
+
+[node name="CheckBox5" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = " Disable playing other player's cards"
+alignment = 1
+
+[node name="CheckBox6" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Can touch other player's cards"
+alignment = 1
+
+[node name="CheckBox7" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "0 Rotation Card"
+alignment = 1
+
+[node name="CheckBox8" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "7 Steals Cards"
+alignment = 1
+
+[node name="CheckBox9" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "Communism"
+alignment = 1
+
+[node name="CheckBox10" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "NO U"
+alignment = 1
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "EXPLODE"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "RESET RAGDOLLS"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="startGame"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer4/Button2" to="." method="explodePlayers"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer5/Button2" to="." method="resetPlayers"]

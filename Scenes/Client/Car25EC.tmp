@@ -1,0 +1,102 @@
+[gd_scene load_steps=10 format=3 uid="uid://b4hvlicj3u1hi"]
+
+[ext_resource type="Script" path="res://Scripts/Hand/Card.gd" id="1_bs1qc"]
+[ext_resource type="Texture2D" uid="uid://de23xearchxad" path="res://Models/Card_UNO-Front.png" id="1_ymium"]
+[ext_resource type="Texture2D" uid="uid://q375hji33xf6" path="res://Models/Card_UNO-Back.png" id="2_y0fax"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vsdyd"]
+size = Vector3(0.335, 0.045, 0.42)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ni563"]
+resource_local_to_scene = true
+resource_name = "Material.001"
+cull_mode = 2
+albedo_texture = ExtResource("1_ymium")
+roughness = 0.5
+uv1_scale = Vector3(0.1, 0.145, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_62d40"]
+resource_name = "Material.002"
+cull_mode = 2
+albedo_texture = ExtResource("2_y0fax")
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_qyaxu"]
+_surfaces = [{
+"aabb": AABB(-0.741634, 0.0086631, -1, 1.48327, 9.99961e-06, 2.00001),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 3, 0, 1, 0, 0, 0, 2, 0, 3, 0),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 254, 255, 0, 0, 255, 255, 0, 0, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0)
+}, {
+"aabb": AABB(-0.741634, -1.50874e-07, -1, 1.48327, 1e-05, 2),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 3, 0, 1, 0, 0, 0, 2, 0, 3, 0),
+"name": "Material.002",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 185, 7, 255, 255, 0, 0, 255, 255, 185, 7, 255, 255, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_vbnlu"]
+resource_name = "Card_Plane"
+_surfaces = [{
+"aabb": AABB(-0.741634, 0.0086631, -1, 1.48327, 9.99961e-06, 2.00001),
+"attribute_data": PackedByteArray(0, 0, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 3, 0, 1, 0, 0, 0, 2, 0, 3, 0),
+"material": SubResource("StandardMaterial3D_ni563"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 254, 255, 255, 191, 255, 255, 0, 0, 254, 255, 255, 191, 0, 0, 0, 0, 0, 0, 255, 191, 255, 255, 0, 0, 0, 0, 255, 191, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127)
+}, {
+"aabb": AABB(-0.741634, -1.50874e-07, -1, 1.48327, 1e-05, 2),
+"attribute_data": PackedByteArray(255, 255, 212, 127, 39, 128, 212, 127, 254, 255, 255, 255, 39, 128, 255, 255),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 3, 0, 1, 0, 0, 0, 2, 0, 3, 0),
+"material": SubResource("StandardMaterial3D_62d40"),
+"name": "Material.002",
+"primitive": 3,
+"uv_scale": Vector4(2.00473, 2.00262, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0, 185, 7, 255, 255, 255, 255, 255, 255, 185, 7, 255, 255, 255, 255, 255, 127, 255, 63, 255, 127, 255, 63, 255, 127, 255, 63, 255, 127, 255, 63)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_qyaxu")
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_r42or"]
+properties/0/path = NodePath("StaticBody3D:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("StaticBody3D:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[node name="Card" type="Node3D"]
+transform = Transform3D(-0.219882, 1.92227e-08, 0, -1.92227e-08, -0.219882, 0, 0, 0, 0.219882, 0, 0, 0)
+script = ExtResource("1_bs1qc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-4.54789, -3.97589e-07, 0, 3.97589e-07, -4.54789, 0, 0, 0, 4.54789, 0, 0, 0)
+shape = SubResource("BoxShape3D_vsdyd")
+
+[node name="Plane" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("ArrayMesh_vbnlu")
+skeleton = NodePath("")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_r42or")
+visibility_update_mode = 1

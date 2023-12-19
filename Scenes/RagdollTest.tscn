@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://cbiew5lryktdd"]
+
+[ext_resource type="PackedScene" uid="uid://2juik52fhwxs" path="res://Scenes/Client/Ragdoll.tscn" id="1_rgyi5"]
+[ext_resource type="Script" path="res://Scripts/Client/Explosion.gd" id="2_1u7l1"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4bvbd"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_qyisn"]
+sky_material = SubResource("ProceduralSkyMaterial_4bvbd")
+
+[sub_resource type="Environment" id="Environment_eyw0w"]
+background_mode = 2
+sky = SubResource("Sky_qyisn")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4i5bv"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_relkk"]
+radius = 6.96
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_eyw0w")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.65315, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_4i5bv")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.28, 8.509, 14.781)
+
+[node name="Legman" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.41206, 0.846853, 0.456276)
+
+[node name="LegMan" parent="Legman" instance=ExtResource("1_rgyi5")]
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.71043)
+visible = false
+script = ExtResource("2_1u7l1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+transform = Transform3D(1.7954, 0, 0, 0, 1.7954, 0, 0, 0, 1.7954, 0, -30.6686, 2.71069)
+shape = SubResource("SphereShape3D_relkk")

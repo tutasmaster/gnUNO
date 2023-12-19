@@ -1,0 +1,108 @@
+[gd_scene load_steps=6 format=3 uid="uid://cpslq0mf4qycu"]
+
+[ext_resource type="PackedScene" uid="uid://hgbh5x4xieaa" path="res://Scenes/Client/Player.tscn" id="1_kewud"]
+[ext_resource type="PackedScene" uid="uid://dc4cxduy2bdag" path="res://Scenes/Client/LocalControls.tscn" id="2_ohc7q"]
+[ext_resource type="Script" path="res://Scripts/Hand/NewPlayerCamera.gd" id="3_cklwr"]
+[ext_resource type="PackedScene" uid="uid://bqxy2ojnbtiya" path="res://Scenes/TableArea.tscn" id="3_e8o53"]
+
+[sub_resource type="TextMesh" id="TextMesh_ja52p"]
+resource_local_to_scene = true
+text = "Tutas"
+font_size = 36
+
+[node name="Player" instance=ExtResource("1_kewud")]
+
+[node name="Node3D" parent="." index="4" node_paths=PackedStringArray("headTarget") instance=ExtResource("2_ohc7q")]
+headTarget = NodePath("../Target/HeadTarget")
+
+[node name="Camera3D" parent="Node3D" index="1" node_paths=PackedStringArray("target")]
+script = ExtResource("3_cklwr")
+target = NodePath("../../Target")
+
+[node name="Node3D2" parent="." index="5" instance=ExtResource("3_e8o53")]
+
+[node name="Doof" parent="Legman/LegMan/Skeleton3D" index="10"]
+surface_material_override/0 = null
+surface_material_override/1 = null
+
+[node name="Duck" parent="Legman/LegMan/Skeleton3D" index="11"]
+surface_material_override/0 = null
+
+[node name="Eyepatch" parent="Legman/LegMan/Skeleton3D" index="12"]
+surface_material_override/0 = null
+
+[node name="Captain" parent="Legman/LegMan/Skeleton3D/Eyepatch" index="0"]
+surface_material_override/0 = null
+
+[node name="Rig" parent="Legman/LegMan/Skeleton3D" index="14"]
+surface_material_override/0 = null
+
+[node name="BoneAttachment3D" parent="Legman/LegMan/Skeleton3D" index="15"]
+transform = Transform3D(1, 1.49695e-16, -1.72956e-16, -1.72956e-16, 0.989659, -0.14344, 1.49695e-16, 0.14344, 0.989659, 1.07028e-15, 5.37118, -1.52833)
+
+[node name="MeshInstance3D" parent="Legman/LegMan/Skeleton3D/BoneAttachment3D" index="0"]
+mesh = SubResource("TextMesh_ja52p")
+
+[node name="Physical Bone Body01" parent="Legman/LegMan2/Skeleton3D" index="7"]
+transform = Transform3D(0.999992, 2.45869e-07, -1.33179e-07, -3.76651e-07, -0.143438, -0.989651, -2.66731e-06, 0.989654, -0.143439, 0, 6.0753, -1.42627)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.54181e-08, -1.18642e-06, 0.711484)
+
+[node name="Physical Bone Body02" parent="Legman/LegMan2/Skeleton3D" index="8"]
+transform = Transform3D(0.999985, 4.21703e-05, -1.75461e-06, -0.000439653, -0.102753, -0.995361, 6.70552e-08, 0.995893, -0.102553, 1.00136e-05, 7.62132, -1.23747)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.53058e-06, -1.3308e-05, 0.845864)
+body_offset = Transform3D(0.999985, 4.23938e-05, -1.75275e-06, -0.00043733, -0.000144921, -1.00063, 4.48972e-05, 1.00118, -5.96046e-07, 1.00136e-05, 0.846397, 1.38283e-05)
+
+[node name="Physical Bone Neck" parent="Legman/LegMan2/Skeleton3D" index="9"]
+transform = Transform3D(0.999987, 1.78814e-07, 4.09782e-08, 1.13235e-07, -0.406974, -0.913436, -1.56462e-07, 0.913433, -0.406977, -6.96182e-05, 8.97841, -0.921142)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.95939e-05, -5.83425e-05, 0.56402)
+
+[node name="Physical Bone L_Elbow" parent="Legman/LegMan2/Skeleton3D" index="10"]
+transform = Transform3D(-0.0755827, 0.108335, 0.991259, 0.703276, -0.699019, 0.13, 0.70686, 0.706906, -0.023346, -1.40323, 8.60097, -0.809415)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0975e-05, -1.63289e-06, 0.628025)
+
+[node name="Physical Bone L_Arm" parent="Legman/LegMan2/Skeleton3D" index="11"]
+transform = Transform3D(-0.06706, 0.0669968, 0.995535, 0.704149, -0.703624, 0.0948147, 0.70686, 0.707199, 5.26533e-05, -2.88296, 8.43755, -0.795135)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000381091, 0.000137678, 0.861095)
+
+[node name="Physical Bone L_Forearm" parent="Legman/LegMan2/Skeleton3D" index="12"]
+transform = Transform3D(-0.0354886, 0.0440392, 0.998377, 0.706398, -0.705559, 0.0562311, 0.706938, 0.707282, -0.00607204, -4.82523, 8.29482, -0.787598)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000268264, -0.000473862, 1.08681)
+
+[node name="Physical Bone L_Hand" parent="Legman/LegMan2/Skeleton3D" index="13"]
+transform = Transform3D(-0.175665, -0.351407, 0.919596, -0.957544, 0.277887, -0.0767329, -0.228574, -0.894013, -0.385302, -6.21496, 8.25906, -0.653954)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000171013, 6.859e-05, 0.331061)
+
+[node name="Physical Bone R_Elbow" parent="Legman/LegMan2/Skeleton3D" index="14"]
+transform = Transform3D(-0.0755827, -0.108312, -0.991205, -0.703278, -0.698921, 0.130682, -0.70686, 0.706943, -0.0239924, 1.4032, 8.60101, -0.809247)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000119764, 0.000493864, 0.627969)
+
+[node name="Physical Bone R_Arm" parent="Legman/LegMan2/Skeleton3D" index="15"]
+transform = Transform3D(-0.0670699, -0.0670116, -0.995613, -0.704071, -0.703636, 0.0948361, -0.706707, 0.707311, 0.00073041, 2.88293, 8.43767, -0.790126)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0036676, -0.00372347, 0.860988)
+
+[node name="Physical Bone R_Forearm" parent="Legman/LegMan2/Skeleton3D" index="16"]
+transform = Transform3D(-0.035491, -0.0440406, -0.998302, -0.706221, -0.705577, 0.0562364, -0.706753, 0.707261, -0.00601127, 4.82523, 8.29489, -0.787097)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000721584, -0.000819479, 1.0869)
+
+[node name="Physical Bone R_Hand" parent="Legman/LegMan2/Skeleton3D" index="17"]
+transform = Transform3D(-0.17528, 0.351374, -0.9196, 0.955424, 0.277842, -0.0767304, 0.228427, -0.893987, -0.385321, 6.21503, 8.25887, -0.653951)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00035819, 8.99434e-05, 0.331105)
+
+[node name="Physical Bone L_Leg01" parent="Legman/LegMan2/Skeleton3D" index="18"]
+transform = Transform3D(0.780481, 0.617452, 0.0977715, -0.0917099, -0.0416043, 0.994894, 0.618395, -0.785477, 0.0241481, -0.743677, 4.22008, -1.55574)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.47455e-06, -7.115e-06, 1.15741)
+
+[node name="Physical Bone L_Leg02" parent="Legman/LegMan2/Skeleton3D" index="19"]
+transform = Transform3D(0.773264, 0.624295, -0.0838235, -0.0825494, 0.230492, 0.969716, 0.629593, -0.746376, 0.22935, -0.74186, 1.73961, -1.89813)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.12893e-06, -4.73425e-05, 1.3709)
+
+[node name="Physical Bone R_Leg01" parent="Legman/LegMan2/Skeleton3D" index="20"]
+transform = Transform3D(0.780482, -0.617468, -0.0977717, 0.0917101, -0.0416119, 0.994895, -0.618395, -0.785483, 0.0241481, 0.708585, 4.2202, -1.55572)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.41545e-05, -8.72576e-06, 1.15728)
+
+[node name="Physical Bone R_Leg02" parent="Legman/LegMan2/Skeleton3D" index="21"]
+transform = Transform3D(0.773256, -0.624295, 0.0838234, 0.0825468, 0.230492, 0.969714, -0.629587, -0.746376, 0.229349, 0.70683, 1.73958, -1.89812)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56305e-06, -2.54399e-05, 1.37093)
+
+[editable path="Node3D"]
+[editable path="Legman/LegMan2"]

@@ -1,0 +1,43 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://cpw3hfprpku0"
+path="res://.godot/imported/Legman.glb-7e2505ae8b3863d00f37d42a2a9510d2.scn"
+
+[deps]
+
+source_file="res://Models/Legman.glb"
+dest_files=["res://.godot/imported/Legman.glb-7e2505ae8b3863d00f37d42a2a9510d2.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+import_script/path=""
+_subresources={
+"nodes": {
+"PATH:Icosphere": {
+"import/skip_import": true
+},
+"PATH:Sphere_001": {
+"import/skip_import": true
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=1

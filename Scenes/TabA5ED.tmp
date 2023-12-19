@@ -1,0 +1,338 @@
+[gd_scene load_steps=10 format=3 uid="uid://bqxy2ojnbtiya"]
+
+[ext_resource type="PackedScene" uid="uid://6mwmi0kys574" path="res://Models/Map/Table.glb" id="1_auvhp"]
+[ext_resource type="Texture2D" uid="uid://bcmshaxq6f415" path="res://StolenAssets/UNO-Front.png" id="2_23fj8"]
+[ext_resource type="Script" path="res://Scripts/Hand/CardHolder.gd" id="4_lylh8"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_t2xog"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_x4wll"]
+sky_material = SubResource("ProceduralSkyMaterial_t2xog")
+
+[sub_resource type="Environment" id="Environment_hgx4v"]
+background_mode = 1
+sky = SubResource("Sky_x4wll")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3nge3"]
+size = Vector2(0.325, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3mr5"]
+albedo_texture = ExtResource("2_23fj8")
+uv1_scale = Vector3(0.098, 0.13, 0.1)
+uv1_offset = Vector3(0.002, 0.002, 0)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_hyitw"]
+height = 6.56
+radius = 3.725
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hgx4v")
+
+[node name="Table" parent="." instance=ExtResource("1_auvhp")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.071, 0)
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 3.295, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="Hand" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.31739, 3.24142)
+script = ExtResource("4_lylh8")
+offset = Vector3(0.06, 0.01, 0)
+enableSpacing = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, -0.025, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09, -0.015, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Hand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.005, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Hand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0.005, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Hand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09, 0.015, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="Hand2" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 3.31739, -3.25917)
+script = ExtResource("4_lylh8")
+offset = Vector3(0.06, 0.01, 0)
+enableSpacing = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hand2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, -0.025, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hand2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09, -0.015, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Hand2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.005, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Hand2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0.005, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Hand2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09, 0.015, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="Hand3" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.2503, 3.31739, -0.00887623)
+script = ExtResource("4_lylh8")
+offset = Vector3(0.06, 0.01, 0)
+enableSpacing = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hand3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, -0.025, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hand3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09, -0.015, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Hand3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.005, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Hand3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0.005, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Hand3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09, 0.015, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="Hand4" type="Node3D" parent="."]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 3.2503, 3.31739, -0.00887594)
+script = ExtResource("4_lylh8")
+offset = Vector3(0.06, 0.01, 0)
+enableSpacing = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hand4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, -0.025, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hand4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09, -0.015, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Hand4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.005, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Hand4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0.005, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Hand4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09, 0.015, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="Hand5" type="Node3D" parent="."]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -2.29831, 3.31739, -2.30718)
+script = ExtResource("4_lylh8")
+offset = Vector3(0.06, 0.01, 0)
+enableSpacing = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hand5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, -0.025, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hand5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09, -0.015, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Hand5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.005, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Hand5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0.005, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Hand5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09, 0.015, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="Hand6" type="Node3D" parent="."]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 2.29831, 3.31739, 2.28943)
+script = ExtResource("4_lylh8")
+offset = Vector3(0.06, 0.01, 0)
+enableSpacing = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hand6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, -0.025, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hand6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09, -0.015, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Hand6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.005, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Hand6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0.005, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Hand6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09, 0.015, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="Hand7" type="Node3D" parent="."]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 2.30071, 3.32845, -2.31101)
+script = ExtResource("4_lylh8")
+offset = Vector3(0.06, 0.01, 0)
+enableSpacing = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hand7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, -0.025, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hand7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09, -0.015, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Hand7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.005, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Hand7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0.005, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Hand7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09, 0.015, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="Hand8" type="Node3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2.29831, 3.31739, 2.28943)
+script = ExtResource("4_lylh8")
+offset = Vector3(0.06, 0.01, 0)
+enableSpacing = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hand8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, -0.025, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hand8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09, -0.015, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Hand8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.005, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Hand8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0.005, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Hand8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09, 0.015, 0)
+mesh = SubResource("PlaneMesh_3nge3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3mr5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("CylinderShape3D_hyitw")

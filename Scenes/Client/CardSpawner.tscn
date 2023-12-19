@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdspi6c4n5gs0"]
+
+[ext_resource type="Script" path="res://Scripts/Hand/CardSpawner.gd" id="1_h8ysk"]
+[ext_resource type="PackedScene" uid="uid://tyxlxh0lgk5x" path="res://Scenes/Client/CardHolder.tscn" id="2_rapyn"]
+
+[node name="CardSpawner" type="Node3D"]
+script = ExtResource("1_h8ysk")
+
+[node name="CardHolder" parent="." instance=ExtResource("2_rapyn")]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Scenes/Client/Card.tscn")
+spawn_path = NodePath("../CardHolder")

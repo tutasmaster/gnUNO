@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bmjq7550xdvg2"]
+
+[resource]
+emission_enabled = true
+emission = Color(0.839216, 0.823529, 0.811765, 1)
+emission_energy_multiplier = 0.15
+distance_fade_mode = 2
+distance_fade_max_distance = 1.0

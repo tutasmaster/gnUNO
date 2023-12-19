@@ -1,0 +1,123 @@
+[gd_scene load_steps=14 format=3 uid="uid://dc4cxduy2bdag"]
+
+[ext_resource type="Script" path="res://Scripts/Hand/CameraHolder.gd" id="1_ef7un"]
+[ext_resource type="Script" path="res://Scripts/Hand/PlayerCamera.gd" id="1_pk0ee"]
+[ext_resource type="Script" path="res://Scripts/Multiplayer/PickColor.gd" id="3_05p3h"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_igffd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cvs11"]
+albedo_color = Color(0.980392, 0, 0.286275, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_e0a3a"]
+material = SubResource("StandardMaterial3D_cvs11")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v21hd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_55nku"]
+albedo_color = Color(0.262745, 0.494118, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fcrxn"]
+material = SubResource("StandardMaterial3D_55nku")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_avfju"]
+albedo_color = Color(0.34902, 0.745098, 0.317647, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_aqqc1"]
+material = SubResource("StandardMaterial3D_avfju")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4hs71"]
+albedo_color = Color(0.952941, 0.772549, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qxn6x"]
+material = SubResource("StandardMaterial3D_4hs71")
+
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("pc", "colorPicker")]
+script = ExtResource("1_ef7un")
+pc = NodePath("Camera3D")
+colorPicker = NodePath("ColorPicker")
+
+[node name="Reference" type="Node3D" parent="."]
+visible = false
+
+[node name="Standing" type="Camera3D" parent="Reference"]
+transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 0, 4.87717, -0.758826)
+visible = false
+fov = 110.0
+
+[node name="Left" type="Camera3D" parent="Reference"]
+transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 0, 4.67, 0)
+visible = false
+
+[node name="Card" type="Camera3D" parent="Reference"]
+transform = Transform3D(1, 0, 0, 0, 0.190809, 0.981627, 0, -0.981627, 0.190809, 0, 4.67, 0)
+visible = false
+
+[node name="Card2" type="Camera3D" parent="Reference"]
+transform = Transform3D(1, 0, 0, 0, 0.190809, 0.981627, 0, -0.981627, 0.190809, 0, 4.67, 0)
+visible = false
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("reference_poses", "target")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.57107, 0)
+current = true
+script = ExtResource("1_pk0ee")
+reference_poses = [NodePath("../Reference/Standing"), NodePath("../Reference/Card")]
+target = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("SphereMesh_igffd")
+
+[node name="ColorPicker" type="Node3D" parent="."]
+visible = false
+
+[node name="RED" type="MeshInstance3D" parent="ColorPicker"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.75, 3.046, -0.236)
+mesh = SubResource("BoxMesh_e0a3a")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ColorPicker/RED"]
+collision_layer = 4
+script = ExtResource("3_05p3h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ColorPicker/RED/StaticBody3D"]
+shape = SubResource("BoxShape3D_v21hd")
+
+[node name="BLUE" type="MeshInstance3D" parent="ColorPicker"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.25, 3.046, -0.236)
+mesh = SubResource("BoxMesh_fcrxn")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="ColorPicker/BLUE"]
+collision_layer = 4
+script = ExtResource("3_05p3h")
+color = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ColorPicker/BLUE/StaticBody3D2"]
+shape = SubResource("BoxShape3D_v21hd")
+
+[node name="GREEN" type="MeshInstance3D" parent="ColorPicker"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.25, 3.046, -0.236)
+mesh = SubResource("BoxMesh_aqqc1")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="ColorPicker/GREEN"]
+collision_layer = 4
+script = ExtResource("3_05p3h")
+color = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ColorPicker/GREEN/StaticBody3D3"]
+shape = SubResource("BoxShape3D_v21hd")
+
+[node name="YELLOW" type="MeshInstance3D" parent="ColorPicker"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.75, 3.046, -0.236)
+mesh = SubResource("BoxMesh_qxn6x")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="ColorPicker/YELLOW"]
+collision_layer = 4
+script = ExtResource("3_05p3h")
+color = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ColorPicker/YELLOW/StaticBody3D4"]
+shape = SubResource("BoxShape3D_v21hd")

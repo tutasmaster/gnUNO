@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://biyhyu5a47aae"]
+
+[ext_resource type="PackedScene" uid="uid://tyxlxh0lgk5x" path="res://Scenes/Client/CardHolder.tscn" id="1_op5cf"]
+[ext_resource type="Script" path="res://Scripts/Hand/AdoptionCardHolder.gd" id="2_7k070"]
+
+[node name="AdoptionCardHolder" node_paths=PackedStringArray("children") instance=ExtResource("1_op5cf")]
+script = ExtResource("2_7k070")
+offset = Vector3(0, 0, 0)
+enableSpacing = false
+children = []
