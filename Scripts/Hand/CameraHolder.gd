@@ -24,6 +24,8 @@ func _input(event):
 	if get_parent().ragdolled:
 		return
 	if event is InputEventMouseButton:
+		if event.button_index != 1:
+			return
 		#print("PICKING STUFF UP")
 		raycast.set_collision_mask_value(3,false)
 		raycast.force_raycast_update()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://ycyuc7ke60q0"]
+[gd_scene load_steps=31 format=3 uid="uid://ycyuc7ke60q0"]
 
 [ext_resource type="Script" path="res://Scripts/Multiplayer/MultiplayerManager.gd" id="1_p5vm1"]
 [ext_resource type="Script" path="res://Scripts/Multiplayer/WorldManager.gd" id="2_ipojb"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/Multiplayer/CardRequester.gd" id="7_va3qy"]
 [ext_resource type="Texture2D" uid="uid://btic15uk2q7q6" path="res://Textures/Floor.png" id="8_srfil"]
 [ext_resource type="Material" uid="uid://b72mj2dcmqc61" path="res://Materials/Bulb.tres" id="9_e8qxs"]
+[ext_resource type="Script" path="res://Scripts/Client/Volume.gd" id="10_x8n54"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jtnnd"]
 
@@ -331,3 +332,24 @@ offset_bottom = 57.0
 grow_horizontal = 2
 label_settings = SubResource("LabelSettings_yr3sp")
 horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." node_paths=PackedStringArray("slider")]
+layout_mode = 0
+offset_right = 228.0
+offset_bottom = 23.0
+script = ExtResource("10_x8n54")
+slider = NodePath("HSlider")
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Volume:"
+
+[node name="HSlider" type="HSlider" parent="HBoxContainer"]
+custom_minimum_size = Vector2(160.57, 0)
+layout_mode = 2
+size_flags_vertical = 4
+min_value = 50.0
+step = 0.01
+value = 100.0
+
+[connection signal="drag_ended" from="HBoxContainer/HSlider" to="HBoxContainer" method="_on_h_slider_drag_ended"]

@@ -2,7 +2,7 @@ extends Node3D
 @export var mesh_instance : Node3D
 
 var cardUno : Card = null
-var card = "B2"
+var card = "B%"
 var update = false
 var networkId = 0
 @export var baseMat : Material
@@ -10,8 +10,8 @@ var networkId = 0
 
 var updatesTo : Node3D = null
 
-#func _ready():
-	#setCard(card)
+func _ready():
+	setCard(card)
 
 @rpc("any_peer")
 func requestPickup(pos):
@@ -44,7 +44,7 @@ func requestPickupID(id):
 		for c in GameManager.SCENE_MULTIPLAYER.spawn_object.get_children():
 			if(c.name == str(id)):
 				if(c.objectPicked != null):
-					c.objectPicked.requestDrop()
+					c.objectPicked.requestDrop(c.objectPicked.global_position)
 					break
 				print("PICKED SOMETHING FOR ID")
 				updatesTo = c.cardTarget
@@ -65,8 +65,6 @@ func requestDrop(pos):
 		updatesTo = null
 		global_position = Vector3(pos.x,global_position.y,pos.z)
 		var isPlay = Vector2(global_position.x, global_position.z).distance_to(Vector2.ZERO) < 1
-		if GameManager.get_current_player().playerObject.name != str(id):
-			isPlay = false
 		if isPlay:
 			GameManager.play(self)
 		

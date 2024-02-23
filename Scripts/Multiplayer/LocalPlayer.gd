@@ -1,5 +1,5 @@
 extends Node3D
-
+class_name LocalPlayer
 @export var sync : MultiplayerSynchronizer
 @export var spawn_positions : Array[Vector3]
 @export var target : Node3D
@@ -34,6 +34,7 @@ func set_nickname(nick):
 @rpc("any_peer")
 func bell_pressed():
 	if(!GameManager.is_server):
+		audio_stream.set_volume_db(GameManager.volume)
 		audio_stream.play()
 
 @rpc("any_peer")
@@ -57,6 +58,7 @@ func set_active_player(isPlayer,coloring):
 	if(is_multiplayer_authority()):
 		localP.colorPicker.visible = coloring
 		if isPlayer && !isActive:
+			notify.set_volume_db(GameManager.volume)
 			notify.play()
 			isActive = true
 		elif !isPlayer:
@@ -88,6 +90,7 @@ var ragdolled = false
 @rpc("any_peer")
 func explode():
 	explosion.play("default")
+	explosion_sound.set_volume_db(GameManager.volume)
 	explosion_sound.play()
 	ragdoll.sync(skeleton)
 	ragdoll.ragdoll()
@@ -111,6 +114,7 @@ func reset_player():
 	
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
+	GameManager.playerList.append(self)
 	
 func _ready():
 	for c in get_parent().get_children():

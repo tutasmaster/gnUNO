@@ -1,23 +1,26 @@
 extends Node
 
-var networking = false
-var connected_to_server = false
-var is_server = false
+@export var networking = false
+@export var connected_to_server = false
+@export var is_server = false
 
-var game = null
+@export var game : UnoTable = null
 
 var SCENE_MULTIPLAYER = null
 var SCENE_MAIN_MENU = null
 
-var CARD_PREFAB = preload("res://Scenes/Client/Card.tscn")
+@export var CARD_PREFAB = preload("res://Scenes/Client/Card.tscn")
 
-var cardDictionary = {}
+@export var cardDictionary = {}
+
+@export var playerList : Array[LocalPlayer] = []
 
 var clientPlayerObject = null
 
 func _ready():
 	SCENE_MAIN_MENU = load("res://Scenes/MainMenu.tscn").instantiate()
 	get_tree().root.add_child.call_deferred(SCENE_MAIN_MENU)
+	SCENE_MAIN_MENU.name = "MM"
 	print(SCENE_MAIN_MENU)
 	multiplayer.peer_connected.connect(_peer_connected)
 	multiplayer.peer_disconnected.connect(_peer_disconnected)
@@ -132,7 +135,7 @@ func syncTable(id = null):
 				m.emission = Color(0,1,0)
 				SCENE_MULTIPLAYER.world_manager.bulb.set_surface_override_material(0,m)
 			Card.GColor.YELLOW:
-				SCENE_MULTIPLAYER.world_manager.light.light_color = Color(1,0.7,0.2)
+				SCENE_MULTIPLAYER.world_manager.light.light_color = Color(1,1.0,0.0)
 				var m : StandardMaterial3D = SCENE_MULTIPLAYER.world_manager.bulb.get_surface_override_material(0)
 				m.emission = Color(1,1,0)
 				SCENE_MULTIPLAYER.world_manager.bulb.set_surface_override_material(0,m)
@@ -172,8 +175,9 @@ func get_current_player():
 
 func play(card):
 	for p in game.players:
-		if p.networkId == card.networkId:
-			if(p.networkId != get_current_player().networkId && !game.isPlayOtherCards):
+		if p.networkId == multiplayer.get_remote_sender_id():
+			if(card.networkId != get_current_player().networkId && !game.isPlayOtherCards):
+				placeCard(card)
 				return
 			var _cardCount = p.hand.card_arr.size()
 			var _c = p.hand.remove_card(card.cardUno)
@@ -186,7 +190,18 @@ func play(card):
 			syncTable()
 			
 			return
+		else:
+			placeCard(card)
 	
+func placeCard(card):
+	var v1 = Vector2(card.global_position.x, card.global_position.z)
+	for p in game.players:
+		if p.networkId == card.networkId:
+			var v2 = Vector2(p.playerObject.global_position.x, p.playerObject.global_position.z)
+			var v3 = (v2 - v1).normalized() * 1.25
+			card.global_position = Vector3(v3.x, card.global_position.y, v3.y)
+			return
+
 	#syncHands()
 var app = 0
 var nick = "PLAYER"
@@ -254,6 +269,21 @@ func checkValidSeats(player):
 			return 	SCENE_MULTIPLAYER.getSpawnFromSeat(player.seat)			
 	return null
 
+var volume = 0
+
+func updateVolume(v):
+	volume = v
+	if v < -48:
+		volume = -1000
+	for p in playerList:
+		if p != null:
+			if(p.audio_stream != null):
+				p.audio_stream.set_volume_db((volume))
+			if(p.explosion_sound != null):
+				p.explosion_sound.set_volume_db((volume))
+			if(p.notify != null):
+				p.notify.set_volume_db((volume))
+
 func spawn_player(id):
 	var player = load("res://Scenes/Client/Player.tscn").instantiate()
 	player.name = str(id)
@@ -310,8 +340,10 @@ func _server_disconnected():
 	
 	SCENE_MAIN_MENU = load("res://Scenes/MainMenu.tscn").instantiate()
 	get_tree().root.add_child.call_deferred(SCENE_MAIN_MENU)
+	SCENE_MAIN_MENU.name = "MM"
 	print(SCENE_MAIN_MENU)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	get_tree().reload_current_scene()
 	pass
 	
 func _connection_failed():

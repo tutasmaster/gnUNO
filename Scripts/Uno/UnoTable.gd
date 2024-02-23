@@ -1,4 +1,5 @@
 class_name UnoTable
+extends Node
 enum DIRECTION{
 	CLOCKWISE,
 	COUNTER_CLOCKWISE
@@ -16,14 +17,14 @@ enum HOLD_STATE{
 	COLORING
 }
 
-var stack = 0
-var isHiddenCards = true
-var isMultiStackingEnabled = true
-var isDividedStacking = true #THIS DEFINES THE IDEA THAT YOU CAN STACK WHILE DRAWING
-var isDrawOutOfTurn = false
-var isPlayOtherCards = false
-var canTouchOtherCards = false
-var cardZeroEnabled = false
+@export var stack = 0
+@export var isHiddenCards = true
+@export var isMultiStackingEnabled = true
+@export var isDividedStacking = true #THIS DEFINES THE IDEA THAT YOU CAN STACK WHILE DRAWING
+@export var isDrawOutOfTurn = false
+@export var isPlayOtherCards = false
+@export var canTouchOtherCards = false
+@export var cardZeroEnabled = false
 
 const GColorMap = {
 	Card.GColor.RED: "R",
@@ -113,13 +114,13 @@ static func decode_card(value):
 		step+=1
 	return card
 
-var players = []
+@export var players = []
 var deck = UnoDeck.new(true, cardZeroEnabled)
 var discard = UnoDeck.new(false)
-var table_direction = DIRECTION.CLOCKWISE
-var state = STATE.LOBBY
-var current_player = 0
-var current_player_old = 0
+@export var table_direction = DIRECTION.CLOCKWISE
+@export var state = STATE.LOBBY
+@export var current_player = 0
+@export var current_player_old = 0
 
 
 
@@ -203,10 +204,10 @@ func play(card):
 					return card
 	return null
 	
-var has_drawn = false
-var draw_count = 0
+@export var has_drawn = false
+@export var draw_count = 0
 
-var holdStates = []
+@export var holdStates = []
 
 func isHold(st):
 	for s in holdStates:
@@ -271,7 +272,7 @@ func draw(player):
 					stack = 0
 					playerRotation()
 
-var current_color = Card.GColor.ANY
+@export var current_color = Card.GColor.ANY
 	
 
 func pickColor(color,player):
@@ -283,7 +284,7 @@ func pickColor(color,player):
 				nextAction()
 	
 
-var current_action = 0
+@export var current_action = 0
 
 func rotateCards():
 	var prevPlayer = null
